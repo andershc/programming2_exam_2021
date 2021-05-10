@@ -14,13 +14,13 @@ class PostalCodeRegisterTest {
      * Tests for addPostalCode().
      */
     @Nested
-    public class AddPostalCode {
+    public class AddPostalCodeTest {
         /**
          * Positive test.
          * @throws AddException if the postal code already exists.
          */
         @Test
-        public void addPostalCodePositive() throws AddException {
+        public void addPostalCodeTestPositive() throws AddException {
             PostalCodeRegister register = new PostalCodeRegister();
             String key = "1234";
             register.addPostalCode(key, "test", "5678", "test", "t");
@@ -32,7 +32,7 @@ class PostalCodeRegisterTest {
          * @throws AddException if the postal code already exists.
          */
         @Test
-        public void addPostalCodeNegative() throws AddException {
+        public void addPostalCodetestNegative() throws AddException {
             PostalCodeRegister register = new PostalCodeRegister();
             String key = "1234";
             register.addPostalCode(key, "test", "5678", "test", "t");
