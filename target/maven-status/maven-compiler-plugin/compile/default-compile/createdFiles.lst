@@ -1,4 +1,6 @@
-org\ntnu\andershc\miniproject\SecondaryController.class
 org\ntnu\andershc\miniproject\App.class
-org\ntnu\andershc\miniproject\PrimaryController.class
 module-info.class
+org\ntnu\andershc\miniproject\exceptions\AddException.class
+org\ntnu\andershc\miniproject\controllers\MainController.class
+org\ntnu\andershc\miniproject\model\PostalCode.class
+org\ntnu\andershc\miniproject\model\PostalCodeRegister.class
