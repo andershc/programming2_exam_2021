@@ -1,5 +1,7 @@
 package org.ntnu.andershc.miniproject.controllers;
 
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -8,24 +10,31 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.ntnu.andershc.miniproject.App;
 import org.ntnu.andershc.miniproject.fileHandling.Read;
+import org.ntnu.andershc.miniproject.fileHandling.Write;
+import org.ntnu.andershc.miniproject.model.PostalCode;
 import org.ntnu.andershc.miniproject.views.FileTypeDialog;
 
 import java.io.File;
 import java.util.Optional;
 
 public class MainController {
+    @FXML
+    private TextField searchField;
+    @FXML
+    private TableView<PostalCode> tableView;
+    @FXML
+    private TableColumn<PostalCode, String> postalCodeColumn;
+    @FXML
+    private TableColumn<PostalCode, String> postalNameColumn;
+    @FXML
+    private TableColumn<PostalCode, String> municipalCodeColumn;
+    @FXML
+    private TableColumn<PostalCode, String> municipalNameColumn;
+    @FXML
+    private TableColumn<PostalCode, String> categoryColumn;
+    @FXML
+    private Label status;
 
-    public MenuItem importCSV;
-    public MenuItem exportCSV;
-    public MenuItem exit;
-    public TextField searchField;
-    public TableColumn postalCodeColumn;
-    public TableColumn postalNameColumn;
-    public TableColumn municipalCodeColumn;
-    public TableColumn municipalNameColumn;
-    public TableColumn categoryColumn;
-    public Label status;
-    public TableView tableView;
 
     /**
      * Method that runs when the window is opened up.
@@ -36,6 +45,7 @@ public class MainController {
         updateList();
         columFactory();
         status.setText("application initialized...");
+
     }
     /**
      * A method to update the table view and the register.
@@ -43,6 +53,8 @@ public class MainController {
     private void updateList(){
         App.updateObservableList();
         tableView.setItems(App.getObservableList());
+        searchFilter();
+        tableView.getSortOrder().addAll(postalCodeColumn);
     }
     /**
      * Initializes the columns of the tableview.
@@ -54,10 +66,35 @@ public class MainController {
         municipalNameColumn.setCellValueFactory(new PropertyValueFactory<>("municipalName"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
     }
+
     /**
-     * Method is called when pressing Import .CSV...
-     * Let's you choose a file to import, the file must be a .csv file.
-     * If the file selected is not .csv a dialog is shown.
+     * A filter that updates the table depending on what you typed in the search filed.
+     * When you type in the field it searches both postal code and postal name.
+     */
+    private void searchFilter(){
+        FilteredList<PostalCode> filteredData = new FilteredList(App.getObservableList(), (b) -> true);
+        this.searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate((postalCode) -> {
+                if (newValue != null && !newValue.isEmpty()) {
+                    String filter = newValue.toLowerCase();
+                    if (postalCode.getPostalCode().toLowerCase().contains(filter)) {
+                        return true;
+                    } else {
+                        return postalCode.getPostalName().toLowerCase().contains(filter);
+                    }
+                } else {
+                    return true;
+                }
+            });
+        });
+        SortedList<PostalCode> sortedData = new SortedList(filteredData);
+        sortedData.comparatorProperty().bind(this.tableView.comparatorProperty());
+        this.tableView.setItems(sortedData);
+    }
+    /**
+     * Method is called when pressing Import File...
+     * Let's you choose a file to import, the file must be a .txt file.
+     * If the file selected is not .txt, a dialog is shown.
      */
     @FXML
     public void importFile() {
@@ -85,6 +122,30 @@ public class MainController {
                     }
                 }
             }
+        }
+    }
+    /**
+     * Method is called when pressing Export File...
+     * Let's you export the register to a .txt file
+     */
+    @FXML
+    public void exportFile(){
+        Stage stage = new Stage();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter(".txt", "*.txt"));
+        File file = fileChooser.showSaveDialog(stage);
+
+        if(file != null) {
+            Write writer = new Write(file.getPath());
+            writer.writeRegister(App.getRegister());
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.setTitle("Information Dialog - Export");
+            alert.setHeaderText("Changes saved to " + file.getPath());
+            alert.showAndWait();
+            status.setText("file exported successfully...");
         }
     }
     /**

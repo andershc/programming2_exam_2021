@@ -15,11 +15,6 @@ public class PostalCode {
      * Throws IllegalArgumentException if the postal code or municipal code isn't 4 digits.
      * Throws IllegalArgumentException if the postal name or municipal name is empty.
      * Throws IllegalArgumentException if the category isn't a letter.
-     * @param postalCode
-     * @param postalName
-     * @param municipalCode
-     * @param municipalName
-     * @param category
      */
     public PostalCode(String postalCode, String postalName, String municipalCode, String municipalName, char category) {
         if(postalCode.length() != 4){
