@@ -21,13 +21,13 @@ public class PostalCode {
             throw new IllegalArgumentException("Postal code must be 4 digits");
         }
         if(postalName.equals("")){
-            throw new IllegalArgumentException("Postal can't be empty");
+            throw new NullPointerException("Postal can't be empty");
         }
         if(municipalCode.length() != 4){
             throw new IllegalArgumentException("Municipal code must be 4 digits");
         }
         if(municipalName.equals("")){
-            throw new IllegalArgumentException("Municipal name can't be empty");
+            throw new NullPointerException("Municipal name can't be empty");
         }
         if(!Character.isLetter(category)){
             throw new IllegalArgumentException("Category must be a letter");
