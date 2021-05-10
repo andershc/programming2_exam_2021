@@ -1,19 +1,31 @@
 package org.ntnu.andershc.miniproject.model;
 
-import java.util.Objects;
-
+/**
+ * PostalCode class stores information about a postal code
+ */
 public class PostalCode {
     private String postalCode;
-    private String postal;
+    private String postalName;
     private String municipalCode;
     private String municipalName;
     private char category;
 
-    public PostalCode(String postalCode, String postal, String municipalCode, String municipalName, char category) {
+    /**
+     * Constructor for the postal code.
+     * Throws IllegalArgumentException if the postal code or municipal code isn't 4 digits.
+     * Throws IllegalArgumentException if the postal name or municipal name is empty.
+     * Throws IllegalArgumentException if the category isn't a letter.
+     * @param postalCode
+     * @param postalName
+     * @param municipalCode
+     * @param municipalName
+     * @param category
+     */
+    public PostalCode(String postalCode, String postalName, String municipalCode, String municipalName, char category) {
         if(postalCode.length() != 4){
             throw new IllegalArgumentException("Postal code must be 4 digits");
         }
-        if(postal.equals("")){
+        if(postalName.equals("")){
             throw new IllegalArgumentException("Postal can't be empty");
         }
         if(municipalCode.length() != 4){
@@ -26,7 +38,7 @@ public class PostalCode {
             throw new IllegalArgumentException("Category must be a letter");
         }
         this.postalCode = postalCode;
-        this.postal = postal;
+        this.postalName = postalName;
         this.municipalCode = municipalCode;
         this.municipalName = municipalName;
         this.category = category;
@@ -40,12 +52,12 @@ public class PostalCode {
         this.postalCode = postalCode;
     }
 
-    public String getPostal() {
-        return postal;
+    public String getPostalName() {
+        return postalName;
     }
 
-    public void setPostal(String postal) {
-        this.postal = postal;
+    public void setPostalName(String postalName) {
+        this.postalName = postalName;
     }
 
     public String getMunicipalCode() {
@@ -84,7 +96,7 @@ public class PostalCode {
     public String toString() {
         return "PostalCode: " +
                 "postalCode:" + postalCode +
-                ", postal:" + postal +
+                ", postal:" + postalName +
                 ", municipalCode:" + municipalCode +
                 ", municipalName:" + municipalName +
                 ", category:" + category;
