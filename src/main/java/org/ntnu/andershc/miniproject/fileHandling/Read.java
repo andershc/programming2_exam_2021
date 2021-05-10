@@ -4,7 +4,6 @@ import org.ntnu.andershc.miniproject.exceptions.AddException;
 import org.ntnu.andershc.miniproject.model.PostalCodeRegister;
 
 import java.io.*;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 public class Read {
@@ -34,7 +33,6 @@ public class Read {
                 bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(path), StandardCharsets.ISO_8859_1));
                 while ((line = bufferedReader.readLine()) != null) {
                     String[] values = line.split("\t");
-                    System.out.println(values[1]);
                     try {
                         register.addPostalCode(values[0], values[1], values[2], values[3], values[4]);
                     } catch (AddException | IllegalArgumentException e) {
