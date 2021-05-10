@@ -25,10 +25,10 @@ public class PostalCodeRegister {
      */
     public void addPostalCode(String postalCode, String postalName,
                            String municipalCode, String municipalName,
-                           char category) throws AddException {
+                           String category) throws AddException {
         if(!postalCodes.containsKey(postalCode)){
             postalCodes.put(postalCode,
-                    new PostalCode(postalCode, postalName, municipalCode, municipalName, category));
+                    new PostalCode(postalCode, postalName, municipalCode, municipalName, category.charAt(0)));
         }
         else{
             throw new AddException(postalCode + " is already registered.");

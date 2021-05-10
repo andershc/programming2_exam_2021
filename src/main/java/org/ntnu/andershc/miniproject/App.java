@@ -67,6 +67,9 @@ public class App extends Application {
     public static void updateObservableList(){
         observableList = FXCollections.observableList(new ArrayList<>(register.getAllPostalCodes().values()));
     }
+    public static ObservableList<PostalCode> getObservableList() {
+        return observableList;
+    }
     /**
      * Shows a confirmation alert when trying to close the application.
      */
