@@ -10,7 +10,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.ntnu.andershc.miniproject.App;
 import org.ntnu.andershc.miniproject.fileHandling.Read;
-import org.ntnu.andershc.miniproject.fileHandling.Write;
 import org.ntnu.andershc.miniproject.model.PostalCode;
 import org.ntnu.andershc.miniproject.views.FileTypeDialog;
 
@@ -122,30 +121,6 @@ public class MainController {
                     }
                 }
             }
-        }
-    }
-    /**
-     * Method is called when pressing Export File...
-     * Let's you export the register to a .txt file
-     */
-    @FXML
-    public void exportFile(){
-        Stage stage = new Stage();
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save");
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter(".txt", "*.txt"));
-        File file = fileChooser.showSaveDialog(stage);
-
-        if(file != null) {
-            Write writer = new Write(file.getPath());
-            writer.writeRegister(App.getRegister());
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.initModality(Modality.APPLICATION_MODAL);
-            alert.setTitle("Information Dialog - Export");
-            alert.setHeaderText("Changes saved to " + file.getPath());
-            alert.showAndWait();
-            status.setText("file exported successfully...");
         }
     }
     /**
