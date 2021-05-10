@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Tests for PostalCode
  */
-class PostalCodeTest {
+public class PostalCodeTest {
     /**
      * Tests for the constructor.
      */

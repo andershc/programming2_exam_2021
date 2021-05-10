@@ -1,6 +1,8 @@
 org\ntnu\andershc\miniproject\App.class
+org\ntnu\andershc\miniproject\fileHandling\Read.class
 module-info.class
 org\ntnu\andershc\miniproject\exceptions\AddException.class
+org\ntnu\andershc\miniproject\views\FileTypeDialog.class
 org\ntnu\andershc\miniproject\controllers\MainController.class
 org\ntnu\andershc\miniproject\model\PostalCode.class
 org\ntnu\andershc\miniproject\model\PostalCodeRegister.class

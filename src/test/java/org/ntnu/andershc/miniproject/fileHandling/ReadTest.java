@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Tests for the read functionality.
  */
-class ReadTest {
+public class ReadTest {
     /**
      * Tests for readFile().
      */

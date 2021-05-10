@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Tests for PostalCodeRegister.
  */
-class PostalCodeRegisterTest {
+public class PostalCodeRegisterTest {
     /**
      * Tests for addPostalCode().
      */
