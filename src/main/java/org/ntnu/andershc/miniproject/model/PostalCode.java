@@ -79,6 +79,10 @@ public class PostalCode {
         this.category = category;
     }
 
+    /**
+     * Equals method that compares postal codes, since that is the only unique
+     * object.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
