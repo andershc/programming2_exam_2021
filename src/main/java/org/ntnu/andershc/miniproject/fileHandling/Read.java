@@ -9,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 public class Read {
     private String path;
     private String line;
+    private int notRead;
 
     /**
      * Constructor for reader, takes in the path of the file
@@ -37,6 +38,7 @@ public class Read {
                         register.addPostalCode(values[0], values[1], values[2], values[3], values[4]);
                     } catch (AddException | IllegalArgumentException e) {
                         System.out.println(e.getMessage());
+                        notRead++;
                     }
 
                 }
@@ -50,5 +52,8 @@ public class Read {
                 }
             }
         }
+    }
+    public int getNotRead(){
+        return notRead;
     }
 }

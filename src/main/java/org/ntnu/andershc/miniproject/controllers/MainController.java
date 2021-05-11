@@ -104,10 +104,14 @@ public class MainController {
         if (file != null) {
             while (true) {
                 Read read = new Read(file.getPath());
+
                 try {
                     read.readFile(App.getRegister());
                     updateList();
                     status.setText("imported successfully...");
+                    if(read.getNotRead() != 0){
+                        status.setText(read.getNotRead() + " objects were not registered...");
+                    }
                     break;
                 } catch (IllegalArgumentException e) {
                     status.setText("import failed...");
