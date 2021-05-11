@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.ntnu.andershc.miniproject.model.PostalCodeRegister;
 
-import java.io.Reader;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
