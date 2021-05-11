@@ -2,6 +2,7 @@ package org.ntnu.andershc.miniproject.model;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -52,7 +53,19 @@ public class PostalCodeTest {
         @Test
         public void categoryIllegalArgumentExceptionTest(){
             assertThrows(IllegalArgumentException.class, () ->
-                    new PostalCode("1111", "test","1", "test", '5'));
+                    new PostalCode("1111", "test","1111",
+                            "test", '5'));
+        }
+
+        /**
+         * Positive test for the constructor.
+         */
+        @Test
+        public void legalArgumentsTest(){
+            String key = "1234";
+            PostalCode postalCode = new PostalCode("1234", "test","1111",
+                    "test", 't');
+            assertEquals(key, postalCode.getPostalCode());
         }
     }
 
