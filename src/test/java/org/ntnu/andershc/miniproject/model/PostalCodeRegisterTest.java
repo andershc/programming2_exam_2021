@@ -28,11 +28,23 @@ public class PostalCodeRegisterTest {
         }
 
         /**
-         * Negative test.
+         * Negative test for illegal input
          * @throws AddException if the postal code already exists.
          */
         @Test
-        public void addPostalCodetestNegative() throws AddException {
+        public void addPostalCodeTestIllegalInput() throws AddException {
+            PostalCodeRegister register = new PostalCodeRegister();
+            String key = "12346";
+            register.addPostalCode(key, "test", "5678", "test", "t");
+            assertFalse(register.getAllPostalCodes().containsKey(key));
+        }
+
+        /**
+         * Negative test for when the postal code is already registered.
+         * @throws AddException if the postal code already exists.
+         */
+        @Test
+        public void addPostalCodeTestAlreadyInRegister() throws AddException {
             PostalCodeRegister register = new PostalCodeRegister();
             String key = "1234";
             register.addPostalCode(key, "test", "5678", "test", "t");
