@@ -49,13 +49,6 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
-    /**
-     * Sets the register of the application
-     * @param register
-     */
-    public static void setRegister(PostalCodeRegister register){
-        App.register = register;
-    }
 
     public static PostalCodeRegister getRegister(){
         return register;
