@@ -67,7 +67,7 @@ public class MainController {
     }
 
     /**
-     * A filter that updates the table depending on what you typed in the search filed.
+     * A filter that updates the table depending on what you typed in the search field.
      * When you type in the field it searches both postal code and postal name.
      */
     private void searchFilter(){
